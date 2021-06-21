@@ -1,14 +1,21 @@
 # heroku-buildpack-ffmpeg-latest
 
-[![CircleCI](https://circleci.com/gh/jonathanong/heroku-buildpack-ffmpeg-latest/tree/master.svg?style=svg)](https://circleci.com/gh/jonathanong/heroku-buildpack-ffmpeg-latest/tree/master)
+Push: [![Test](https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest/workflows/Test/badge.svg?branch=master&event=push)](https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster)  
+Scheduled: [![Test](https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest/workflows/Test/badge.svg?branch=master&event=schedule)](https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest/actions?query=workflow%3ATest+event%3Aschedule+branch%3Amaster)
+
+> If you'd like to maintain this repository, let me know!
 
 A Heroku buildpack for ffmpeg that always downloads the latest [static build](http://johnvansickle.com/ffmpeg/).
 Unlike other build packs, I never compile anything.
 
 ## Usage
 
-Add the following to your `.buildpacks`:
+Run the following from the heroku command line:
 
 ```
-https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+heroku buildpacks:add --index 1 https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
 ```
+
+Note: This buildpack should be added before the main language buildpack (by using `--index 1`),
+since the application process types are calculated from the last buildpack in the list if no
+`Procfile` is specified.
